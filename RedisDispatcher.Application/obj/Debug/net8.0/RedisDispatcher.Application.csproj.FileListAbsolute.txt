@@ -1,0 +1,15 @@
+D:\SyC\RedisDispatcher.Application\bin\Debug\net8.0\RedisDispatcher.Application.deps.json
+D:\SyC\RedisDispatcher.Application\bin\Debug\net8.0\RedisDispatcher.Application.dll
+D:\SyC\RedisDispatcher.Application\bin\Debug\net8.0\RedisDispatcher.Application.pdb
+D:\SyC\RedisDispatcher.Application\bin\Debug\net8.0\RedisDispatcher.Domain.dll
+D:\SyC\RedisDispatcher.Application\bin\Debug\net8.0\RedisDispatcher.Domain.pdb
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.csproj.AssemblyReference.cache
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.AssemblyInfoInputs.cache
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.AssemblyInfo.cs
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.csproj.CoreCompileInputs.cache
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDis.5122E530.Up2Date
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.dll
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\refint\RedisDispatcher.Application.dll
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\RedisDispatcher.Application.pdb
+D:\SyC\RedisDispatcher.Application\obj\Debug\net8.0\ref\RedisDispatcher.Application.dll
