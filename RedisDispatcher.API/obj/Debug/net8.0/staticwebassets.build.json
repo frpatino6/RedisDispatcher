@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "Xl6D5Iaq+pRVTbDmNlPrdqNLSwGGUbBjfO17r0B02kM=",
+  "Source": "RedisDispatcher.API",
+  "BasePath": "_content/RedisDispatcher.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
