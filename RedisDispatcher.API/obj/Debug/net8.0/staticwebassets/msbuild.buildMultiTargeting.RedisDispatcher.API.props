@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\RedisDispatcher.API.props" />
-</Project>
