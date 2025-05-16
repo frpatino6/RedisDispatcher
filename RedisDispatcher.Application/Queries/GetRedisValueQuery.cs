@@ -1,5 +1,5 @@
 ﻿using MediatR;
 
-namespace RedisDispatcher.Application.Queries.GetRedisValue;
+namespace RedisDispatcher.Application.Queries;
 
 public record GetRedisValueQuery(string Client, string Key) : IRequest<string?>;

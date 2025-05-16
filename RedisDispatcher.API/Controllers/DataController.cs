@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using RedisDispatcher.Application.Queries.GetRedisValue;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using RedisDispatcher.Application.Commads;
+using RedisDispatcher.Application.Queries;
 
 namespace RedisDispatcher.API.Controllers;
 
@@ -30,5 +30,11 @@ public class DataController : ControllerBase
         await _mediator.Send(command);
         return Ok(new { message = "Value added successfully." });
     }
-
+    [HttpDelete("{client}/{key}")]
+    public async Task<IActionResult> DeleteAsync(string client,string key)
+    {
+        var command = new DeleteDataCommand(client, key);
+        await _mediator.Send(command);
+        return Ok(new { message = "Value deleted successfully." });
+    }
 }

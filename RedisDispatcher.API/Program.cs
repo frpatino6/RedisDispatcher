@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using RedisDispatcher.Application.Queries.GetRedisValue;
+using RedisDispatcher.Application.Queries;
 using RedisDispatcher.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

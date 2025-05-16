@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using RedisDispatcher.Domain.Exceptions;
 using RedisDispatcher.Domain.Interfaces;
 
-namespace RedisDispatcher.Application.Queries.GetRedisValue;
+namespace RedisDispatcher.Application.Queries;
 
 public class GetRedisValueQueryHandler : IRequestHandler<GetRedisValueQuery, string?>
 {
