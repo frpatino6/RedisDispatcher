@@ -1,5 +1,7 @@
 ﻿using StackExchange.Redis;
 using RedisDispatcher.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
+using RedisDispatcher.Infrastructure.Common;
 
 namespace RedisDispatcher.Infrastructure.Services;
 
@@ -7,10 +9,12 @@ public class RedisService : IRedisService
 {
     private readonly IClientConfigurationResolver _resolver;
     private readonly Dictionary<string, ConnectionMultiplexer> _connections = new();
+    private readonly ILogger<RedisService> _logger;
 
-    public RedisService(IClientConfigurationResolver resolver)
+    public RedisService(IClientConfigurationResolver resolver, ILogger<RedisService> logger)
     {
         _resolver = resolver;
+        _logger = logger;
     }
 
     public async Task<string?> GetValueAsync(string client, string key)
@@ -34,13 +38,26 @@ public class RedisService : IRedisService
 
     private async Task<IDatabase> GetDatabaseAsync(string client)
     {
-        if (!_connections.TryGetValue(client, out var connection))
+        try
         {
-            var connString = _resolver.GetRedisConnectionString(client);
-            connection = await ConnectionMultiplexer.ConnectAsync(connString);
-            _connections[client] = connection;
-        }
+            if (!_connections.TryGetValue(client, out var connection))
+            {
+                var connString = _resolver.GetRedisConnectionString(client);
+                connection = await ConnectionMultiplexer.ConnectAsync(connString);
+                _connections[client] = connection;
+            }
 
-        return connection.GetDatabase();
+            return connection.GetDatabase();
+        }
+        catch (RedisConnectionException ex)
+        {
+            _logger.LogError(ex, "Error connecting to Redis for client: {Client}", client);
+            throw new InfrastructureException($"No se pudo conectar a Redis para el cliente {client}.", ex);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unexpected error getting Redis database for client: {Client}", client);
+            throw new InfrastructureException(ex?.Message ?? "An unexpected error occurred.", ex);
+        }
     }
 }
