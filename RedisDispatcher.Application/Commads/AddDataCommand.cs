@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 namespace RedisDispatcher.Application.Commads
 {
-    public record AddDataCommand(string Client, string Key, string Value) : IRequest;
+    public record AddDataCommand(string Client, string Key, string Value, int environment) : IRequest;
 
 }

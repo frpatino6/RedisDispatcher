@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 namespace RedisDispatcher.Application.Commads
 {
 
-    public record DeleteDataCommand(string Client, string Key) : IRequest;
+    public record DeleteDataCommand(string Client, string Key, int Environment) : IRequest;
 }

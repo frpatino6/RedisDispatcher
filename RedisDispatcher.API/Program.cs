@@ -2,8 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using RedisDispatcher.Application.Queries;
 using RedisDispatcher.Infrastructure;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+var assembly = Assembly.GetExecutingAssembly();
+var version = assembly.GetName().Version?.ToString() ?? "Unknown";
+Console.WriteLine($"Assembly Version: {version}");
 
 if (builder.Environment.IsDevelopment())
 {

@@ -24,7 +24,7 @@ public class GetRedisValueQueryHandler : IRequestHandler<GetRedisValueQuery, str
             return null;
         }
 
-        var result = await _redisService.GetValueAsync(request.Client, request.Key);
+        var result = await _redisService.GetValueAsync(request.Client, request.Key, request.Environment);
 
         if (result == null)
         {

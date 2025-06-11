@@ -16,10 +16,10 @@ public class GetSecretsController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("{clientId}")]
-    public async Task<IActionResult> Post(string clientId)
+    [HttpPost("{clientId}/{environment}")]
+    public async Task<IActionResult> Post(string clientId, int environment)
     {
-        var result = await _mediator.Send(new GetAndStoreSecretsCommand { ClientId = clientId });
+        var result = await _mediator.Send(new GetAndStoreSecretsCommand { ClientId = clientId, Environment = environment });
         return Ok(result);
     }
 

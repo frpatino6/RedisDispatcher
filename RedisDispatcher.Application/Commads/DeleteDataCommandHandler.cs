@@ -25,7 +25,7 @@ namespace RedisDispatcher.Application.Commads
             try
             {
                 _logger.LogInformation("Executing command logic with client: {Client}, key: {Key}", request.Client, request.Key);
-                await _redisService.DeleteAsync(request.Client, request.Key);
+                await _redisService.DeleteAsync(request.Client, request.Key, request.Environment);
                 _logger.LogInformation("Successfully set value for client: {Client}, key: {Key}", request.Client, request.Key);
             }
             catch (Exception ex)

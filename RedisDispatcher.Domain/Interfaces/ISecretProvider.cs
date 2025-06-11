@@ -2,6 +2,6 @@
 {
     public interface ISecretProvider
     {
-        Dictionary<string, string> GetSecrets(string clientId);
+        Dictionary<string, string> GetSecrets(string clientId, int environment);
     }
 }

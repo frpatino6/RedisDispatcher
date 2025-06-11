@@ -18,12 +18,14 @@ public class RedisService : IRedisService
         _logger = logger;
     }
 
-  
-    public async Task<string?> GetValueAsync(string client, string key)
+
+    public async Task<string?> GetValueAsync(string client, string key, int environment)
     {
         var db = await GetDatabaseAsync(client);
-        return await db.StringGetAsync(key);
+        var fullKey = $"{environment}_{key}";
+        return await db.StringGetAsync(fullKey);
     }
+
 
     public async Task<IEnumerable<string>> GetAllKeysAsync(string client, string pattern = "*")
     {
@@ -39,16 +41,11 @@ public class RedisService : IRedisService
         return keys;
     }
 
-    public async Task SetAsync(string client, string key, string value)
-    {
-        var db = await GetDatabaseAsync(client);
-        await db.StringSetAsync(key, value);
-    }
 
-    public async Task SetValueAsync(string client, string key, string value)
+    public async Task SetValueAsync(string client, string key, string value, int environment)
     {
         var db = await GetDatabaseAsync(client);
-        await db.StringSetAsync(key, value);
+        await db.StringSetAsync($"{environment}_{key}", value);
     }
 
     private async Task<IDatabase> GetDatabaseAsync(string client)
@@ -101,9 +98,11 @@ public class RedisService : IRedisService
         }
     }
 
-    public async Task DeleteAsync(string client, string key)
+    public async Task DeleteAsync(string client, string key, int environment)
     {
         var db = await GetDatabaseAsync(client);
-        await db.KeyDeleteAsync(key);
+        var fullKey = $"{environment}_{key}";
+        await db.KeyDeleteAsync(fullKey);
     }
+
 }

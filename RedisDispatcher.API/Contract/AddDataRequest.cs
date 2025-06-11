@@ -1,5 +1,4 @@
-﻿public class AddDataRequest
+﻿namespace RedisDispatcher.API.Contract
 {
-    public required string Key { get; init; }
-    public required string Value { get; init; }
+    public record AddDataRequest(string Client, string Key, string Value, int Environment);
 }

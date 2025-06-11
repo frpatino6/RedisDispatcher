@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RedisDispatcher.API.Contract;
 using RedisDispatcher.Application.Commads;
 using RedisDispatcher.Application.Queries;
 
@@ -16,24 +17,24 @@ public class DataController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{client}/{key}")]
-    public async Task<IActionResult> GetValue(string client, string key)
+    [HttpGet("{client}/{key}/{environment}")]
+    public async Task<IActionResult> GetValue(string client, string key, int environment)
     {
-        var value = await _mediator.Send(new GetRedisValueQuery(client, key));
+        var value = await _mediator.Send(new GetRedisValueQuery(client, key, environment));
         return value is not null ? Ok(new { value }) : NotFound();
     }
 
-    [HttpPost("{client}")]
-    public async Task<IActionResult> PostAsync(string client, [FromBody] AddDataRequest request)
+    [HttpPost]
+    public async Task<IActionResult> PostAsync([FromBody] AddDataRequest request)
     {
-        var command = new AddDataCommand(client, request.Key, request.Value);
+        var command = new AddDataCommand(request.Client, request.Key, request.Value, request.Environment);
         await _mediator.Send(command);
         return Ok(new { message = "Value added successfully." });
     }
-    [HttpDelete("{client}/{key}")]
-    public async Task<IActionResult> DeleteAsync(string client,string key)
+    [HttpDelete("{client}/{key}/{environment}")]
+    public async Task<IActionResult> DeleteAsync(string client,string key, int environment)
     {
-        var command = new DeleteDataCommand(client, key);
+        var command = new DeleteDataCommand(client, key, environment);
         await _mediator.Send(command);
         return Ok(new { message = "Value deleted successfully." });
     }

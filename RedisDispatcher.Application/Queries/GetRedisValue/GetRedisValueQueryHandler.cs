@@ -14,6 +14,6 @@ public class GetRedisValueQueryHandler : IRequestHandler<GetRedisValueQuery, str
 
     public async Task<string?> Handle(GetRedisValueQuery request, CancellationToken cancellationToken)
     {
-        return await _redisService.GetValueAsync(request.Client, request.Key);
+        return await _redisService.GetValueAsync(request.Client, request.Key, request.environment);
     }
 }
